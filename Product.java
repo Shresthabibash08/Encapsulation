@@ -3,7 +3,7 @@ public class Product {
     private String productName;
     private int productId;
     private double productPrice;
-    private int stockQuantity;
+    private int stockQuantity=0;
     public int quantity;
     public  Product(String productName,int productId,double productPrice){
         this.productName=productName;
@@ -30,18 +30,16 @@ public class Product {
         this.productPrice=productPrice;
         }
     }
-    public void purchasedProduct(int productId,int stockQuantity,int quantity){
+    public void purchasedProduct(int quantity){
           if (quantity > 0 && quantity <= stockQuantity) {
             stockQuantity -= quantity;
-            System.out.println(quantity + " item(s) purchased.");
         } else {
             System.out.println("Invalid purchase quantity or not enough stock.");
         }
     }
-    public void restockProduct(int productId,int stockQuantity,int quantity){
+    public void restockProduct(int quantity){
         if (quantity > 0) {
             stockQuantity += quantity;
-            System.out.println(quantity + " item(s) restocked.");
         } else {
             System.out.println("Restock quantity must be positive.");
         }
@@ -63,7 +61,8 @@ public class Product {
 class StockCalculation{
     public static void main(String[]args){
         Product product = new Product("Iphone",1,20000);
-
+        product.restockProduct(10);
+        System.out.println(product.getStockQuantity());
         
     }
 }
